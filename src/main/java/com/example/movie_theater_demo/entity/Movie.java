@@ -11,7 +11,7 @@ public class Movie {
     @Column(name="id", nullable = false, updatable = false)
     private int id;
 
-    @Column(name="title", nullable = false, columnDefinition = "TEXT")
+    @Column(name="title", nullable = false)
     private String title;
 
     @Column(name="description")

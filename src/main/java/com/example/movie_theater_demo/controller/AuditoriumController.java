@@ -42,7 +42,7 @@ public class AuditoriumController {
     @PostMapping("/generateMoreAuditoriums")
     public String generateMoreAuditoriums(){
         Faker faker = new Faker();
-        Auditorium auditorium = null;
+        Auditorium auditorium;
 
         for(int i = 0; i < 10; i++){
             String title = faker.funnyName().name();

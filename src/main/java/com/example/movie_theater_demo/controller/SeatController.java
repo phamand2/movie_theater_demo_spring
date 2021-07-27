@@ -44,11 +44,13 @@ public class SeatController {
 
     @PostMapping("/generateMoreSeats")
     public void generateMoreSeats(){
-        for (int row = 1; row <= 10; row++) {
-            Auditorium auditorium = auditoriumService.findAll().get(row -1);
-            for (int seat = 1; seat <= 10; seat++) {
-                Seat seatCreated = new Seat(row, seat, auditorium);
-                seatService.saveOrUpdate(seatCreated);
+        List<Auditorium> auditoriums = auditoriumService.findAll();
+        for(var room : auditoriums){
+            for (int row = 1; row <= 10; row++) {
+                for (int seat = 1; seat <= 10 ; seat++) {
+                    Seat seatCreated = new Seat(row, seat, room);
+                    seatService.saveOrUpdate(seatCreated);
+                }
             }
         }
     }

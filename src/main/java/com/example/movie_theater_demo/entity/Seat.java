@@ -10,10 +10,10 @@ public class Seat {
     @Column(name="id", nullable = false, updatable = false)
     private int id;
 
-    @Column(name="row")
+    @Column(name="row_number")
     private int rowNumber;
 
-    @Column(name="number")
+    @Column(name="seat_number")
     private int number;
 
     @ManyToOne()
