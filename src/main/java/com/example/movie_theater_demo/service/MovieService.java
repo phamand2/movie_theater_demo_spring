@@ -1,45 +1,50 @@
 package com.example.movie_theater_demo.service;
 
-import com.example.movie_theater_demo.dao.MovieDao;
+import com.example.movie_theater_demo.dao.MovieIMPL;
 import com.example.movie_theater_demo.entity.Movie;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class MovieService {
+public class MovieService implements MainService {
 
     // Dependency injection
-    private final MovieDao movieDAO;
+    private final MovieIMPL movieIMPL;
+
+    public MovieService(@Qualifier("movieIMPL") MovieIMPL movieIMPL) {
+        this.movieIMPL = movieIMPL;
+    }
 
     // Initialize the dependency
-    @Autowired
-    public MovieService(MovieDao movieDao) {
-        this.movieDAO = movieDao;
-    }
+//    @Autowired
+//    public MovieService(MovieDao movieDao) {
+//        this.movieDAO = movieDao;
+//    }
 
-
+    @Override
     public List<Movie> findAll() {
-        return movieDAO.findAll();
+        return movieIMPL.findAll();
     }
 
-
+    @Override
     public Object findById(int movieId) {
-        return movieDAO.findById(movieId);
+        return movieIMPL.findById(movieId);
     }
 
-
-    public void saveOrUpdate(Movie theMovie) {
-        movieDAO.saveOrUpdate(theMovie);
+    @Override
+    public void saveOrUpdate(Object theMovie) {
+        movieIMPL.saveOrUpdate(theMovie);
     }
 
-
+    @Override
     public void deleteById(int movieId) {
-        movieDAO.deleteById(movieId);
+        movieIMPL.deleteById(movieId);
     }
 
-    public void deleteAllMovies(){movieDAO.deleteAll();}
+    @Override
+    public void deleteAll(){movieIMPL.deleteAll();}
 }
 
 

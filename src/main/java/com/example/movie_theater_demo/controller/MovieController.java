@@ -68,7 +68,7 @@ public class MovieController {
 
     @DeleteMapping("/deleteAllMovies")
     public String deleteAllMovies(){
-        movieService.deleteAllMovies();
+        movieService.deleteAll();
         return "ALL MOVIES ARE DELETED";
     }
 

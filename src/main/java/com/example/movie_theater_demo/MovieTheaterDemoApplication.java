@@ -1,14 +1,7 @@
 package com.example.movie_theater_demo;
 
-import com.example.movie_theater_demo.dao.AuditoriumDao;
-import com.example.movie_theater_demo.dao.MovieDao;
-import com.example.movie_theater_demo.entity.Auditorium;
-import com.example.movie_theater_demo.entity.Movie;
-import com.github.javafaker.Faker;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class MovieTheaterDemoApplication {

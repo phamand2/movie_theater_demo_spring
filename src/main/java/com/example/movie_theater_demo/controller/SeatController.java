@@ -69,7 +69,7 @@ public class SeatController {
 
     @DeleteMapping("/deleteAllSeats")
     public String deleteAllSeats(){
-        seatService.deleteAllSeats();
+        seatService.deleteAll();
         return "ALL SEATS ARE DELETED";
     }
 

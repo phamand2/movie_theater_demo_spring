@@ -12,7 +12,7 @@ import javax.persistence.EntityManager;
 import java.util.List;
 
 @Repository
-public class AuditoriumIMPL implements AuditoriumDao{
+public class AuditoriumIMPL implements MainDao{
 
     private final EntityManager entityManager;
 
@@ -38,7 +38,7 @@ public class AuditoriumIMPL implements AuditoriumDao{
 
     @Override
     @Transactional
-    public void saveOrUpdate(Auditorium theAuditorium) {
+    public void saveOrUpdate(Object theAuditorium) {
         Session currentSession = entityManager.unwrap(Session.class);
         currentSession.saveOrUpdate(theAuditorium);
     }

@@ -10,7 +10,7 @@ import javax.persistence.EntityManager;
 import java.util.List;
 
 @Repository
-public class SeatIMPL implements SeatDao{
+public class SeatIMPL implements MainDao{
 
 
     private final EntityManager entityManager;
@@ -35,9 +35,10 @@ public class SeatIMPL implements SeatDao{
         return currentSession.get(Seat.class, theId);
     }
 
+
     @Override
     @Transactional
-    public void saveOrUpdate(Seat theSeat) {
+    public void saveOrUpdate(Object theSeat) {
         Session currentSession = entityManager.unwrap(Session.class);
         currentSession.saveOrUpdate(theSeat);
     }

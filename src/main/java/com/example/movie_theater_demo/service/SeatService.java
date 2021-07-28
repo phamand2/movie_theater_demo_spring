@@ -1,42 +1,45 @@
 package com.example.movie_theater_demo.service;
 
-import com.example.movie_theater_demo.dao.MovieDao;
-import com.example.movie_theater_demo.dao.SeatDao;
-import com.example.movie_theater_demo.entity.Movie;
+import com.example.movie_theater_demo.dao.SeatIMPL;
 import com.example.movie_theater_demo.entity.Seat;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
-public class SeatService {
+public class SeatService implements MainService {
 
-    private final SeatDao seatDao;
+    private final SeatIMPL seatIMPL;
 
-    public SeatService(SeatDao seatDao) {
-        this.seatDao = seatDao;
+    public SeatService(@Qualifier("seatIMPL") SeatIMPL seatIMPL) {
+        this.seatIMPL = seatIMPL;
     }
 
+//    public SeatService(SeatDao seatDao) {
+//        this.seatDao = seatDao;
+//    }
 
+
+    @Override
     public List<Seat> findAll() {
-        return seatDao.findAll();
+        return seatIMPL.findAll();
     }
 
-
+    @Override
     public Object findById(int movieId) {
-        return seatDao.findById(movieId);
+        return seatIMPL.findById(movieId);
     }
 
-
-    public void saveOrUpdate(Seat theSeat) {
-        seatDao.saveOrUpdate(theSeat);
+    @Override
+    public void saveOrUpdate(Object theSeat) {
+        seatIMPL.saveOrUpdate(theSeat);
     }
 
-
+    @Override
     public void deleteById(int movieId) {
-        seatDao.deleteById(movieId);
+        seatIMPL.deleteById(movieId);
     }
 
-    public void deleteAllSeats(){seatDao.deleteAll();}
+    @Override
+    public void deleteAll(){seatIMPL.deleteAll();}
 }

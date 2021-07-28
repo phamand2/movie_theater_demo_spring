@@ -1,43 +1,46 @@
 package com.example.movie_theater_demo.service;
 
 
-import com.example.movie_theater_demo.dao.AuditoriumDao;
-import com.example.movie_theater_demo.dao.MovieDao;
+import com.example.movie_theater_demo.dao.AuditoriumIMPL;
 import com.example.movie_theater_demo.entity.Auditorium;
-import com.example.movie_theater_demo.entity.Movie;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class AuditoriumService {
+public class AuditoriumService implements MainService {
 
-    private final AuditoriumDao auditoriumDao;
+    private final AuditoriumIMPL auditoriumIMPL;
 
-
-    public AuditoriumService(AuditoriumDao auditoriumDao) {
-        this.auditoriumDao = auditoriumDao;
+    public AuditoriumService(@Qualifier("auditoriumIMPL") AuditoriumIMPL auditoriumIMPL) {
+        this.auditoriumIMPL = auditoriumIMPL;
     }
 
+
+//    public AuditoriumService(AuditoriumDao auditoriumDao) {
+//        this.auditoriumDao = auditoriumDao;
+//    }
+    @Override
     public List<Auditorium> findAll() {
-        return auditoriumDao.findAll();
+        return auditoriumIMPL.findAll();
     }
 
-
+    @Override
     public Object findById(int movieId) {
-        return auditoriumDao.findById(movieId);
+        return auditoriumIMPL.findById(movieId);
     }
 
-
-    public void saveOrUpdate(Auditorium auditorium) {
-        auditoriumDao.saveOrUpdate(auditorium);
+    @Override
+    public void saveOrUpdate(Object auditorium) {
+        auditoriumIMPL.saveOrUpdate(auditorium);
     }
 
-
+    @Override
     public void deleteById(int movieId) {
-        auditoriumDao.deleteById(movieId);
+        auditoriumIMPL.deleteById(movieId);
     }
-
-    public void deleteAllAuditorium(){auditoriumDao.deleteAll();}
+    @Override
+    public void deleteAll(){auditoriumIMPL.deleteAll();}
 }

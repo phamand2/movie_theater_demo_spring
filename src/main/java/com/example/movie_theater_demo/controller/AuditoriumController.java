@@ -1,9 +1,7 @@
 package com.example.movie_theater_demo.controller;
 
 import com.example.movie_theater_demo.entity.Auditorium;
-import com.example.movie_theater_demo.entity.Movie;
 import com.example.movie_theater_demo.service.AuditoriumService;
-import com.example.movie_theater_demo.service.MovieService;
 import com.github.javafaker.Faker;
 import org.springframework.web.bind.annotation.*;
 
@@ -67,7 +65,7 @@ public class AuditoriumController {
 
     @DeleteMapping("/deleteAllAuditoriums")
     public String deleteAllAuditoriums(){
-        auditoriumService.deleteAllAuditorium();
+        auditoriumService.deleteAll();
         return "ALL AUDITORIUMS ARE DELETED";
     }
 

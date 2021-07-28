@@ -11,7 +11,7 @@ import javax.persistence.EntityManager;
 import java.util.List;
 
 @Repository
-public class MovieIMPL implements MovieDao{
+public class MovieIMPL implements MainDao{
 
     private final EntityManager entityManager;
 
@@ -46,7 +46,7 @@ public class MovieIMPL implements MovieDao{
 
     @Override
     @Transactional
-    public void saveOrUpdate(Movie theMovie) {
+    public void saveOrUpdate(Object theMovie) {
         Session currentSession = entityManager.unwrap(Session.class);
         currentSession.saveOrUpdate(theMovie);
     }
