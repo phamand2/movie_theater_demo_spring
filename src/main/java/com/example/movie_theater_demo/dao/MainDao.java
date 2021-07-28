@@ -1,7 +1,4 @@
 package com.example.movie_theater_demo.dao;
-
-import com.example.movie_theater_demo.entity.Auditorium;
-
 import java.util.List;
 
 public interface MainDao<T> {

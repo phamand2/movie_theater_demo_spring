@@ -3,7 +3,9 @@ package com.example.movie_theater_demo.controller;
 import com.example.movie_theater_demo.entity.Auditorium;
 import com.example.movie_theater_demo.entity.Seat;
 import com.example.movie_theater_demo.service.AuditoriumService;
+import com.example.movie_theater_demo.service.MainService;
 import com.example.movie_theater_demo.service.SeatService;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,10 +14,11 @@ import java.util.List;
 @RequestMapping(path = "api/v1/seat")
 public class SeatController {
 
-    private final SeatService seatService;
-    private final AuditoriumService auditoriumService;
+    private final MainService seatService;
+    private final MainService auditoriumService;
 
-    public SeatController(SeatService seatService, AuditoriumService auditoriumService) {
+
+    public SeatController(@Qualifier("seatService") MainService seatService, @Qualifier("auditoriumService") MainService auditoriumService) {
         this.seatService = seatService;
         this.auditoriumService = auditoriumService;
     }

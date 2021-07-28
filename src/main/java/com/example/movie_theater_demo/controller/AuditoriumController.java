@@ -2,7 +2,9 @@ package com.example.movie_theater_demo.controller;
 
 import com.example.movie_theater_demo.entity.Auditorium;
 import com.example.movie_theater_demo.service.AuditoriumService;
+import com.example.movie_theater_demo.service.MainService;
 import com.github.javafaker.Faker;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,21 +12,21 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "api/v1/auditorium")
 public class AuditoriumController {
-    private final AuditoriumService auditoriumService;
+    private final MainService mainService;
 
-    public AuditoriumController(AuditoriumService auditoriumService) {
-        this.auditoriumService = auditoriumService;
+    public AuditoriumController(@Qualifier("auditoriumService") MainService mainService) {
+        this.mainService = mainService;
     }
 
     @GetMapping("/getAllAuditorium")
     public List<Auditorium> findAll(){
-        return auditoriumService.findAll();
+        return mainService.findAll();
     }
 
     @GetMapping("/{auditoriumId}")
     public Auditorium findById(@PathVariable int auditoriumId){
 
-        Object id = auditoriumService.findById(auditoriumId);
+        Object id = mainService.findById(auditoriumId);
 
         return (Auditorium) id;
     }
@@ -33,7 +35,7 @@ public class AuditoriumController {
     public Auditorium addAuditorium(@RequestBody Auditorium auditorium){
         auditorium.setId(0);
 
-        auditoriumService.saveOrUpdate(auditorium);
+        mainService.saveOrUpdate(auditorium);
         return auditorium;
     }
 
@@ -46,26 +48,26 @@ public class AuditoriumController {
             String title = faker.funnyName().name();
 
             auditorium = new Auditorium(title);
-            auditoriumService.saveOrUpdate(auditorium);
+            mainService.saveOrUpdate(auditorium);
         }
         return "10 additional auditorium added successfully";
     }
 
     @PutMapping("/updateAuditorium")
     public Auditorium updateAuditorium(@RequestBody Auditorium auditorium){
-        auditoriumService.saveOrUpdate(auditorium);
+        mainService.saveOrUpdate(auditorium);
         return auditorium;
     }
 
     @DeleteMapping("/deleteAuditorium/{auditoriumId}")
     public String deleteAuditorium(@PathVariable int auditoriumId){
-        auditoriumService.deleteById(auditoriumId);
+        mainService.deleteById(auditoriumId);
         return "Deleted Auditorium id : " + auditoriumId;
     }
 
     @DeleteMapping("/deleteAllAuditoriums")
     public String deleteAllAuditoriums(){
-        auditoriumService.deleteAll();
+        mainService.deleteAll();
         return "ALL AUDITORIUMS ARE DELETED";
     }
 
